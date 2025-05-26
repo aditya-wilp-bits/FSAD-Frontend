@@ -58,6 +58,21 @@ const RequestsTable = ({ requests }) => {
     }
   }
 
+  const getStatusText = (status) => {
+    switch (status) {
+      case "UNASSIGNED":
+        return "Unassigned"
+      case "ASSIGNED":
+        return "Assigned"
+      case "WORK_IN_PROGRESS":
+        return "In Progess"
+      case "COMPLETED":
+        return "Completed"
+      case "REJECTED":
+        return "Rejected"
+    }
+  }
+
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -72,36 +87,44 @@ const RequestsTable = ({ requests }) => {
               <TableCell>Created By</TableCell>
               <TableCell>Created At</TableCell>
               <TableCell>Assigned To</TableCell>
-              <TableCell>Resolution Time</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {requests.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((request) => (
-              <TableRow hover key={request.id}>
-                <TableCell>{request.id}</TableCell>
-                <TableCell>{request.title}</TableCell>
-                <TableCell>{request.facility}</TableCell>
-                <TableCell>
-                  <Chip
-                    label={request.severity.charAt(0).toUpperCase() + request.severity.slice(1)}
-                    color={getSeverityColor(request.severity)}
-                    size="small"
-                    variant="outlined"
-                  />
+            {requests.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={8} align="center">
+                  No requests found.
                 </TableCell>
-                <TableCell>
-                  <Chip
-                    label={request.status.charAt(0).toUpperCase() + request.status.slice(1).replace("_", " ")}
-                    color={getStatusColor(request.status)}
-                    size="small"
-                  />
-                </TableCell>
-                <TableCell>{request.createdBy}</TableCell>
-                <TableCell>{new Date(request.createdAt).toLocaleString()}</TableCell>
-                <TableCell>{request.assignedTo || "Unassigned"}</TableCell>
-                <TableCell>{request.resolutionTime || "N/A"}</TableCell>
               </TableRow>
-            ))}
+            ) : (
+              requests
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((request) => (
+                  <TableRow hover key={request.id}>
+                    <TableCell>{request.id}</TableCell>
+                    <TableCell>{request.title}</TableCell>
+                    <TableCell>{request.facility}</TableCell>
+                    <TableCell>
+                      <Chip
+                        label={request.severity}
+                        color={getSeverityColor(request.severity)}
+                        size="small"
+                        variant="outlined"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        label={getStatusText(request.status)}
+                        color={getStatusColor(request.status)}
+                        size="small"
+                      />
+                    </TableCell>
+                    <TableCell>{request.createdBy}</TableCell>
+                    <TableCell>{new Date(request.createdAt).toLocaleString()}</TableCell>
+                    <TableCell>{request.assignedTo || "Unassigned"}</TableCell>
+                  </TableRow>
+                ))
+            )}
           </TableBody>
         </Table>
       </TableContainer>
