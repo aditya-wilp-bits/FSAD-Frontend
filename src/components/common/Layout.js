@@ -35,6 +35,7 @@ import {
   VpnKey as PasswordIcon,
 } from "@mui/icons-material"
 import { AuthContext } from "../../context/AuthContext"
+import { useSnackbar } from "notistack";
 
 const drawerWidth = 240
 
@@ -64,6 +65,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }))
 
 const Layout = ({ children, title }) => {
+  const { enqueueSnackbar } = useSnackbar()
   const [open, setOpen] = useState(true)
   const [anchorEl, setAnchorEl] = useState(null)
   const { currentUser, logout } = useContext(AuthContext)
@@ -81,9 +83,26 @@ const Layout = ({ children, title }) => {
     setAnchorEl(null)
   }
 
-  const handleLogout = () => {
-    logout()
-    navigate("/login")
+  const handleLogout = async (e) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:9090/logout`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Something went wrong, logout was un-successful');
+      }
+      logout()
+      navigate("/login")
+      enqueueSnackbar("User Logout Successfully", { variant: "success" })
+    } catch (error) {
+      enqueueSnackbar('Something went wrong, logout was un-successful', { variant: 'error' });
+    }
   }
 
   const handleChangePassword = () => {

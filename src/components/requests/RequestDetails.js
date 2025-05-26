@@ -187,7 +187,7 @@ const RequestDetails = () => {
         createdAt: new Date().toISOString(),
         user: {
           id: currentUser.id,
-          name: currentUser.name,
+          name: currentUser.firstName+" "+currentUser.lastName,
         },
       }
 
