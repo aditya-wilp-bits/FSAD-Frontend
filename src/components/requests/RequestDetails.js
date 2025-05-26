@@ -90,8 +90,7 @@ const RequestDetails = () => {
         }
 
         setStatus(requestData.status)
-
-        if (currentUser.role === "FACILITY_HEAD") {
+        if (currentUser.role === "facility_head") {
           const assigneesResponse = await fetch('http://localhost:9090/facility-head/assignee', {
             headers: {
               'Authorization': `Bearer ${token}`
