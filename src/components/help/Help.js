@@ -51,7 +51,7 @@ const Help = () => {
               <CardMedia
                 component="img"
                 height="140"
-                image="/placeholder.svg?height=140&width=400"
+                image="/Final-Start.gif"
                 alt="Getting Started"
               />
               <CardContent>
@@ -69,7 +69,7 @@ const Help = () => {
               <CardMedia
                 component="img"
                 height="140"
-                image="/placeholder.svg?height=140&width=400"
+                image="/Final-Request.gif"
                 alt="Creating Requests"
               />
               <CardContent>
@@ -87,7 +87,7 @@ const Help = () => {
               <CardMedia
                 component="img"
                 height="140"
-                image="/placeholder.svg?height=140&width=400"
+                image="/Final-Managing.gif"
                 alt="Managing Requests"
               />
               <CardContent>
@@ -144,7 +144,7 @@ const Help = () => {
                 <ListItemText primary="2. Navigate to 'My Requests' to see a complete list of all your requests." />
               </ListItem>
               <ListItem>
-                <ListItemText primary="3. Click on any request to view its detailed status, including comments and activity log." />
+                <ListItemText primary="3. Click on any request to view its detailed status, including comments." />
               </ListItem>
             </List>
             <Typography>Request statuses include: Unassigned, Assigned, In Progress, Closed, and Rejected.</Typography>
@@ -153,7 +153,7 @@ const Help = () => {
 
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
-            <Typography>How do I close a request?</Typography>
+            <Typography>How do I delete a request?</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography paragraph>To close a request that you created:</Typography>
@@ -165,15 +165,11 @@ const Help = () => {
                 <ListItemText primary="2. Click on the request to view its details." />
               </ListItem>
               <ListItem>
-                <ListItemText primary="3. Click the 'Close Request' button at the top right." />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary="4. Provide a reason for closing the request and confirm." />
+                <ListItemText primary="3. Click the 'Delete Request' button at the top right." />
               </ListItem>
             </List>
             <Typography>
-              Note: Depending on system settings, you may only be able to close requests that you created.
-              Administrators and facility heads can close any request.
+              Note: Depending on system settings, you may only be able to close requests that you created before it is assigned to any facility worker.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -312,8 +308,7 @@ const Help = () => {
             Need More Help?
           </Typography>
           <Typography variant="body1" paragraph>
-            If you need additional assistance, please contact the system administrator at admin@example.com or call the
-            IT helpdesk at 123-456-7890.
+            If you need additional assistance, please contact the system administrator at admin@example.com.
           </Typography>
         </Box>
       </Paper>

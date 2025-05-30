@@ -110,16 +110,16 @@ const Login = () => {
                 {"Demo Accounts:"}
               </Typography>
               <Typography variant="caption" color="text.secondary" align="center" display="block">
-                Admin: admin@example.com / password
+                Admin: 2024sl93024@wilp.bits-pilani.ac.in / 12345678
               </Typography>
               <Typography variant="caption" color="text.secondary" align="center" display="block">
-                Facility Head: facility@example.com / password
+                Facility Head: azharcr8@gmail.com / 123456
               </Typography>
               <Typography variant="caption" color="text.secondary" align="center" display="block">
-                Assignee: assignee@example.com / password
+                Assignee: 2024sl93051@wilp.bits-pilani.ac.in / 123456
               </Typography>
               <Typography variant="caption" color="text.secondary" align="center" display="block">
-                User: user@example.com / password
+                User: rungtaaditya3@gmail.com / 123456
               </Typography>
             </Box>
           </Box>
