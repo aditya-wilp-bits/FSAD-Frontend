@@ -37,8 +37,8 @@ const Dashboard = () => {
   const [stats, setStats] = useState({
     totalRequests: 0,
     openRequests: 0,
-    closedRequests: 0,
-    unassignedRequests: 0,
+    closeRequests: 0,
+    unAssignedRequests: 0,
     inProgressRequests: 0,
   })
 
@@ -53,13 +53,13 @@ const Dashboard = () => {
             'Authorization': `Bearer ${token}`
           }
         });
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch dashboard data');
         }
-        
+
         const data = await response.json();
-        setStats(data.stats);
+        setStats(data);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       } finally {
@@ -157,7 +157,7 @@ const Dashboard = () => {
                   <Typography variant="h6" gutterBottom>
                     Closed Requests
                   </Typography>
-                  <Typography variant="h3">{stats.closedRequests}</Typography>
+                  <Typography variant="h3">{stats.closeRequests}</Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -167,7 +167,7 @@ const Dashboard = () => {
                   <Typography variant="h6" gutterBottom>
                     Unassigned
                   </Typography>
-                  <Typography variant="h3">{stats.unassignedRequests}</Typography>
+                  <Typography variant="h3">{stats.unAssignedRequests}</Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -193,10 +193,10 @@ const Dashboard = () => {
             <Box sx={{ height: 220, display: "flex", justifyContent: "center", alignItems: "center" }}>
               <RequestStatusChart
                 data={[
-                  { name: "Unassigned", value: stats.unassignedRequests },
-                  { name: "Assigned", value: stats.openRequests - stats.unassignedRequests - stats.inProgressRequests },
+                  { name: "Unassigned", value: stats.unAssignedRequests },
+                  { name: "Assigned", value: stats.openRequests - stats.unAssignedRequests - stats.inProgressRequests },
                   { name: "In Progress", value: stats.inProgressRequests },
-                  { name: "Closed", value: stats.closedRequests },
+                  { name: "Closed", value: stats.closeRequests },
                 ]}
               />
             </Box>
