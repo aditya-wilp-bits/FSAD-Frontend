@@ -32,7 +32,6 @@ import RecentActivityList from "./RecentActivityList"
 
 const Dashboard = () => {
   const { currentUser } = useContext(AuthContext)
-  console.log(currentUser)
   currentUser.role = currentUser.role.toLowerCase();
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState({
@@ -42,81 +41,14 @@ const Dashboard = () => {
     unassignedRequests: 0,
     inProgressRequests: 0,
   })
-  const [recentRequests, setRecentRequests] = useState([])
-  const [assignedRequests, setAssignedRequests] = useState([])
 
   useEffect(() => {
-    // Fetch dashboard data
-    // In a real app, you would make API calls to your backend
 
-    // Simulate API call with setTimeout
-    const timer = setTimeout(() => {
-      // Dummy data
-      setStats({
-        totalRequests: 125,
-        openRequests: 42,
-        closedRequests: 83,
-        unassignedRequests: 15,
-        inProgressRequests: 27,
-      })
-
-      setRecentRequests([
-        {
-          id: "1",
-          title: "Projector not working in CS-101",
-          facility: "Computer Science Lab",
-          severity: "High",
-          status: "Unassigned",
-          createdAt: "2023-06-15T10:30:00Z",
-        },
-        {
-          id: "2",
-          title: "AC not cooling in Library",
-          facility: "Library",
-          severity: "Medium",
-          status: "Assigned",
-          createdAt: "2023-06-14T14:20:00Z",
-        },
-        {
-          id: "3",
-          title: "Water leakage in Hostel Block B",
-          facility: "Hostel",
-          severity: "High",
-          status: "In Progress",
-          createdAt: "2023-06-13T09:15:00Z",
-        },
-      ])
-
-      setAssignedRequests([
-        {
-          id: "4",
-          title: "Replace light bulbs in ME-201",
-          facility: "Mechanical Engineering",
-          severity: "Low",
-          status: "Assigned",
-          createdAt: "2023-06-12T11:45:00Z",
-        },
-        {
-          id: "5",
-          title: "Fix broken chair in Canteen",
-          facility: "Canteen",
-          severity: "Low",
-          status: "In Progress",
-          createdAt: "2023-06-11T16:30:00Z",
-        },
-      ])
-
-      setLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-
-    /* 
     // Real implementation would look like:
     const fetchDashboardData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('/api/dashboard', {
+        const response = await fetch('http://localhost:9090/dashboard', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -128,17 +60,13 @@ const Dashboard = () => {
         
         const data = await response.json();
         setStats(data.stats);
-        setRecentRequests(data.recentRequests);
-        setAssignedRequests(data.assignedRequests);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       } finally {
         setLoading(false);
       }
     };
-    
-    fetchDashboardData();
-    */
+    fetchDashboardData()
   }, [])
 
   const getStatusColor = (status) => {

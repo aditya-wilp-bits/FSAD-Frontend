@@ -154,12 +154,6 @@ const Layout = ({ children, title }) => {
       roles: ["facility_head"],
     },
     {
-      text: "Admin Panel",
-      icon: <AdminIcon />,
-      link: "/admin",
-      roles: ["admin"],
-    },
-    {
       text: "Reports",
       icon: <ReportsIcon />,
       link: "/reports",
