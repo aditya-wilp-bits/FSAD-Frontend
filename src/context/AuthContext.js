@@ -63,8 +63,7 @@ export const AuthProvider = ({ children }) => {
       });
       
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Login failed');
+        throw new Error('Login failed invalid credentials');
       }
       
       const data = await response.json();
