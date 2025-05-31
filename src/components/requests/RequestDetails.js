@@ -187,7 +187,7 @@ const RequestDetails = () => {
         createdAt: new Date().toISOString(),
         user: {
           id: currentUser.id,
-          name: currentUser.firstName+" "+currentUser.lastName,
+          name: currentUser.firstName + " " + currentUser.lastName,
         },
       }
 
@@ -389,7 +389,7 @@ const RequestDetails = () => {
             </Button>
           )}
           {status === "WORK_IN_PROGRESS" && currentUser.role === "assignee" && (
-            <Button variant="outlined" color="error" startIcon={<CancelIcon />} onClick={handleOpenCloseDialog}>
+            <Button variant="outlined" color="success" startIcon={<CheckCircleIcon />} onClick={handleOpenCloseDialog}>
               Mark as Completed
             </Button>
           )}
